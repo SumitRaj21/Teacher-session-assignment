@@ -33,7 +33,7 @@ const createUserSchema= Joi.object({
 });
 
 const getUserSessionsSchema= Joi.object({
-    userId: Joi.string()
+    id: Joi.string()
         .hex()
         .length(24)
         .required()

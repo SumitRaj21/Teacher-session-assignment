@@ -231,6 +231,15 @@ Common HTTP statuses include `400` for invalid input, `404` for missing records,
 | `npm start` | Start the server with Nodemon |
 | `npm test` | No test suite is configured yet |
 
+## Postman Collection
+
+Import these files into Postman:
+
+- [Teacher-Session-Assignment.postman_collection.json](./postman/Teacher-Session-Assignment.postman_collection.json)
+- [Teacher-Session-Assignment.local.postman_environment.json](./postman/Teacher-Session-Assignment.local.postman_environment.json)
+
+Select the local environment and set `teacherId` to an existing MongoDB teacher ObjectId. Run `Create User` first, then `Create Session`, `Get Available Sessions`, `Book Session`, `Complete Session`, and `Get User Sessions`. The collection automatically stores created `userId` and `sessionId` values.
+
 ## Development Notes
 
 - MongoDB ObjectIds must contain 24 hexadecimal characters.
