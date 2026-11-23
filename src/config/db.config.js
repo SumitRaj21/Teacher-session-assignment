@@ -5,7 +5,6 @@ const connectDB = async () => {
         console.log('Connecting to MongoDB...');
 
         const uri = process.env.MONGODB_URI;
-        console.log('MongoDB URI:', uri); // Log the URI to check if it's being read correctly
         if (!uri) {
             throw new Error('MONGODB_URI is missing in .env');
         }

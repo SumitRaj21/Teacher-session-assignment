@@ -9,7 +9,7 @@ class SessionController {
   });
 
   getAvailableSessions=asyncHandler(async (req, res) => {
-    const sessions = await sessionService.getAvailableSessions(req.query);
+    const sessions = await sessionService.getAvailableSessions(req.query.dateTimestamp);
     res.status(200).json({ success: true, count: sessions.length, data: sessions });
   });
 

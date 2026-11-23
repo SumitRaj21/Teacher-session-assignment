@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Session = require('../models/sessionModel');
-const Teacher = require('../models/TeacherModel.js');
-const User=require('../models/userModel.js');
+const Teacher = require('../models/teacherModel');
+const User = require('../models/userModel');
 const AppError = require('../utils/AppError');
 
 class SessionService {
@@ -24,8 +24,9 @@ class SessionService {
         const timestamp = Number(dateTimestamp);
         if (!dateTimestamp || !Number.isFinite(timestamp)) throw new AppError(400, 'dateTimestamp query parameter must be a valid timestamp in milliseconds');
         const day = new Date(timestamp);
-        const startOfDay = new Date(day); startOfDay.setHours(0, 0, 0, 0);
-        const endOfDay = new Date(day); endOfDay.setHours(24, 0, 0, 0);
+        if (Number.isNaN(day.getTime())) throw new AppError(400, 'dateTimestamp must represent a valid date');
+        const startOfDay = new Date(day); startOfDay.setUTCHours(0, 0, 0, 0);
+        const endOfDay = new Date(day); endOfDay.setUTCHours(24, 0, 0, 0);
         const sessions = await Session.aggregate([
             { $match: { status: 'AVAILABLE', startTime: { $gte: startOfDay, $lt: endOfDay } } },
             { $lookup: { from: 'teachers', localField: 'teacherId', foreignField: '_id', as: 'teacher' } },

@@ -229,7 +229,7 @@ Common HTTP statuses include `400` for invalid input, `404` for missing records,
 | Command | Description |
 | --- | --- |
 | `npm start` | Start the server with Nodemon |
-| `npm test` | No test suite is configured yet |
+| `npm test` | Run the regression tests |
 
 ## Postman Collection
 

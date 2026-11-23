@@ -17,7 +17,7 @@ class UserService {
         if (!userExists) throw new AppError(404, 'User not found');
         const now = new Date();
         const result = await Session.aggregate([
-            { $match: { userId: mongoose.Types.ObjectId(userId) } },
+            { $match: { userId: new mongoose.Types.ObjectId(userId) } },
             { $lookup: { from: 'teachers', localField: 'teacherId', foreignField: '_id', as: 'teacher' } },
             { $unwind: { path: '$teacher', preserveNullAndEmptyArrays: true } },
             { $project: { teacherId: 1, userId: 1, startTime: 1, endTime: 1, status: 1, completedAt: 1, teacher: { fullName: 1, specialization: 1, email: 1 } } },

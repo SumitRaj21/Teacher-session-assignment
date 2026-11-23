@@ -1,10 +1,10 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
-const { connectDatabase } = require('./config/database');
-const Teacher = require('./models/Teacher');
+const connectDB = require('./config/db.config');
+const Teacher = require('./models/teacherModel');
 
 async function seedTeacher() {
-  await connectDatabase();
+  await connectDB();
   const teacher = await Teacher.findOneAndUpdate(
     { email: 'teacher.demo@example.com' },
     { fullName: 'Demo Teacher', email: 'teacher.demo@example.com', specialization: 'Mathematics', experience: 5 },
